@@ -68,5 +68,21 @@ function mergeSort(arr) {
     return temp;
   }
   
-  // create a function 
-  
+// make a api call to the github api to fetch the details of the user using the username
+function getUserDetails(username) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://api.github.com/users/' + username);
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        var user = JSON.parse(xhr.responseText);
+        console.log(user);
+      } else {
+        console.log('Error: ' + xhr.status);
+      }
+    }
+  };
+  xhr.send();
+}
+
+console.log(getUserDetails("ashfaqnisar"))  
