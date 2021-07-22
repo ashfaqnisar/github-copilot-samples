@@ -86,3 +86,114 @@ function getUserDetails(username) {
 }
 
 console.log(getUserDetails("ashfaqnisar"))  
+
+// Add two numbers
+function add(a, b) {
+  return a + b;
+}
+
+// find a element in a list
+function findElement(arr, element) {
+  var low = 0;
+  var high = arr.length - 1;
+  while (low <= high) {
+    var mid = Math.floor((low + high) / 2);
+    if (arr[mid] === element) {
+      return mid;
+    } else if (arr[mid] > element) {
+      high = mid - 1;
+    } else {
+      low = mid + 1;
+    }
+  }
+  return -1;
+}
+
+// find a element in a list using merge sort
+function findElement(arr, element) {
+  var sorted = mergeSort(arr);
+  var index = sorted.indexOf(element);
+  return index === sorted.length - 1 ? -1 : index;
+}
+
+
+
+// create a double linked list
+function createDoubleLinkedList(head) {
+  var current = head;
+  var prev = null;
+  while (current) {
+    var next = current.next;
+    current.next = prev;
+    prev = current;
+    current = next;
+  }
+  return prev;
+}
+
+// create a palindrome function
+function isPalindrome(str) {
+  var reversed = '';
+  for (var i = str.length - 1; i >= 0; i--) {
+    reversed += str[i];
+  }
+  return str === reversed;
+}
+
+// logistic regression
+function logisticRegression(x, y, alpha, iterations) {
+  var theta = [0, 0];
+  for (var i = 0; i < iterations; i++) {
+    var z = theta[0] + theta[1] * x;
+    var h = 1 / (1 + Math.exp(-z));
+    var gradient = [x * (h - y), h * (1 - h) * x];
+    theta[0] -= alpha * gradient[0];
+    theta[1] -= alpha * gradient[1];
+  }
+  return theta;
+}
+
+// linear regression
+function linearRegression(x, y, alpha, iterations) {
+  var theta = [0, 0];
+  for (var i = 0; i < iterations; i++) {
+    var z = theta[0] + theta[1] * x;
+    var h = z;
+    var gradient = [x * (h - y), h * (1 - h) * x];
+    theta[0] -= alpha * gradient[0];
+    theta[1] -= alpha * gradient[1];
+  }
+  return theta;
+}
+
+
+// create a function to find the maximum value in a list
+function findMax(arr) {
+  var max = arr[0];
+  for (var i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+  }
+  return max;
+}
+
+// create a function to calculate the mean of a list
+function mean(arr) {
+  var sum = 0;
+  for (var i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return sum / arr.length;
+}
+
+// create a function to find median of two sorted lists
+function findMedian(arr1, arr2) {
+  var len = arr1.length;
+  var mid = Math.floor(len / 2);
+  if (len % 2 === 0) {
+    return (arr1[mid] + arr2[mid]) / 2;
+  } else {
+    return arr1[mid];
+  }
+}

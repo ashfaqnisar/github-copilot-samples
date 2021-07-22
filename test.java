@@ -135,6 +135,65 @@ public static String getUserDetails(String username) {
     }
 }
 
+// request  github api to fetch the user using the username
+public static String getUser(String username) {
+    String url = "https://api.github.com/users/" + username;
+    try {
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("User-Agent", "Mozilla/5.0");
+        int responseCode = con.getResponseCode();
+        if (responseCode == 200) {
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            } 
+            in.close();
+            return response.toString();
+        } else {
+            return "";
+        }
+    } 
+    catch (IOException e) {
+        return "";
+    }
+}
+
+// design a vending machine
+public static String designVendingMachine(String[] items, int[] prices, int money) {
+    String result = "";
+    for (int i = 0; i < items.length; i++) {
+        if (prices[i] <= money) {
+            result += items[i] + " ";
+            money -= prices[i];
+        }
+    }
+    return result;
+}
+
+// find the third element in the tail linked list
+public static int findThirdElement(ListNode head) {
+    ListNode temp = head;
+    ListNode second = head;
+    ListNode first = head;
+    int count = 0;
+    while (temp != null) {
+        count++;
+        if (count == 2) {
+            second = temp;
+        }
+        if (count == 3) {
+            first = temp;
+        }
+        temp = temp.next;
+    }
+    return second.val;
+}
+
+
 public static void main(String[] args) {
     int[] array = {11, 2, 31, 4, 25, 6, 17, 8, 99, 10};
     int element = 11;
@@ -156,3 +215,4 @@ public static void main(String[] args) {
     System.out.println("Hello World!");
 }
 }
+
